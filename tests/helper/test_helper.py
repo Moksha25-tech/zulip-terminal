@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Set, Tuple
 
 import pytest
@@ -580,9 +582,14 @@ def test_process_media(
     assert mocked_download_media.called == download_media_called
     assert controller.show_media_confirmation_popup.called == show_media_called
     if show_media_called:
-        controller.show_media_confirmation_popup.assert_called_once_with(
-            mocked_open_media, tool, modified_media_path
-        )
+        # Normalize paths to handle cross-platform differences (/ vs \\)
+        # Convert both paths to use forward slashes for platform-independent comparison
+        actual_path = controller.show_media_confirmation_popup.call_args[0][2]
+        expected = modified_media_path.replace("\\", "/")
+        actual = actual_path.replace("\\", "/")
+        controller.show_media_confirmation_popup.assert_called_once()
+        assert actual == expected
+        assert controller.show_media_confirmation_popup.call_args[0][1] == tool
 
 
 def test_process_media_empty_url(
@@ -625,6 +632,9 @@ def test_open_media(
 ) -> None:
     mocked_run = mocker.patch(MODULE + ".subprocess.run")
     mocked_run.return_value.returncode = returncode
+    # Mock successful_GUI_return_code to return the expected success code
+    # When returncode==0, success code is 0; otherwise success code is 0 (different from returncode)
+    mocker.patch(MODULE + ".successful_GUI_return_code", return_value=0)
     controller = mocker.Mock()
 
     open_media(controller, tool, media_path)

@@ -11,6 +11,7 @@ from zulipterminal.api_types import (
     CustomProfileField,
     Message,
     MessageType,
+    Submessage,
 )
 from zulipterminal.config.keys import (
     ZT_TO_URWID_CMD_MAPPING,
@@ -228,6 +229,33 @@ def logged_on_user() -> Dict[str, Any]:
         "full_name": "Human Myself",
         "email": "FOOBOO@gmail.com",
     }
+
+
+@pytest.fixture
+def submessage_factory() -> "Callable[..., Submessage]":
+    """Factory for creating `Submessage`-shaped dicts for tests.
+
+    Usage:
+        submsg = submessage_factory(id=1, sender_id=100, content='{}', msg_type='widget')
+
+    All fields default to reasonable values so tests can override only
+    the fields they care about.
+    """
+
+    def _factory(
+        id: int = 1,
+        sender_id: int = 1001,
+        content: str = "",
+        msg_type: str = "widget",
+    ) -> Submessage:
+        return {
+            "id": id,
+            "sender_id": sender_id,
+            "content": content,
+            "msg_type": msg_type,
+        }
+
+    return _factory
 
 
 @pytest.fixture

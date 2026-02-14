@@ -3162,7 +3162,6 @@ class TestModel:
                     "submessage_id": 1,
                     "sender_id": 27294,
                     "content": '{"type":"strike","key":"0,canned"}',
-                    "id": 1,
                 },
                 [
                     {
@@ -3178,12 +3177,10 @@ class TestModel:
                         ),
                     },
                     {
-                        "type": "submessage",
-                        "msg_type": "widget",
-                        "message_id": 1958326,
-                        "submessage_id": 1,
+                        "id": 1,
                         "sender_id": 27294,
                         "content": '{"type":"strike","key":"0,canned"}',
+                        "msg_type": "widget",
                     },
                 ],
                 id="submessage_strike_event_todo_widget",
@@ -3243,15 +3240,13 @@ class TestModel:
                         "content": '{"type":"strike","key":"0,canned"}',
                     },
                     {
-                        "type": "submessage",
-                        "msg_type": "widget",
-                        "message_id": 1958326,
-                        "submessage_id": 12185,
+                        "id": 12185,
                         "sender_id": 27294,
                         "content": (
                             '{"type":"new_task","key":2,"task":"Make a coffee",'
                             '"desc":"","completed":false}'
                         ),
+                        "msg_type": "widget",
                     },
                 ],
                 id="submessage_new_task_event_todo_widget",
@@ -3278,16 +3273,13 @@ class TestModel:
                         "content": '{"type":"strike","key":"0,canned"}',
                     },
                     {
-                        "type": "submessage",
-                        "msg_type": "widget",
-                        "message_id": 1958326,
-                        "submessage_id": 12185,
+                        "id": 12185,
                         "sender_id": 27294,
                         "content": (
                             '{"type":"new_task","key":2,"task":"Make a coffee"'
                             ',"desc":"","completed":false}'
                         ),
-                        "id": 0,
+                        "msg_type": "widget",
                     },
                 ],
                 {
@@ -3323,27 +3315,22 @@ class TestModel:
                         "content": '{"type":"strike","key":"0,canned"}',
                     },
                     {
-                        "type": "submessage",
-                        "msg_type": "widget",
-                        "message_id": 1958326,
-                        "submessage_id": 12185,
+                        "id": 12185,
                         "sender_id": 27294,
                         "content": (
                             '{"type":"new_task","key":2,"task":"Make a coffee"'
                             ',"desc":"","completed":false}'
                         ),
-                        "id": 0,
+                        "msg_type": "widget",
                     },
                     {
-                        "type": "submessage",
-                        "msg_type": "widget",
-                        "message_id": 1958326,
-                        "submessage_id": 12186,
+                        "id": 12186,
                         "sender_id": 27294,
                         "content": (
                             '{"type":"new_task_list_title",'
                             '"title":"Today\'s Work [Updated]"}'
                         ),
+                        "msg_type": "widget",
                     },
                 ],
                 id="submessage_new_task_list_title_event_todo_widget",
